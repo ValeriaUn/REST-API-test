@@ -38,11 +38,15 @@ class User
      */
     public function get(int $id): array
     {
-        $query = "SELECT * FROM " . $this->table . "WHERE id = ?";
+        $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
         $stmt = $this->connection->prepare($query);
         $stmt->bindParam(1, $id);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if(!is_array($row)) {
+            $row = [];
+        }
 
         return $row;
     }

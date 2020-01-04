@@ -38,11 +38,19 @@ function process(form) {
         data: form.serialize(),
         method: form.attr('method')
     }).done(function (response) {
-
         if (action.indexOf('post') >= 0) {
             alert('User was added.');
         } else if (action.indexOf('get') >= 0) {
-            // show user info
+            var data = response.user;
+            var info = '';
+
+            $.each(data, function (key, value) {
+                info += key + ': ' + value + '\n';
+            });
+
+            if (info) {
+                alert(info);
+            }
         } else if (action.indexOf('delete') >= 0) {
             alert('User was deleted.');
         }

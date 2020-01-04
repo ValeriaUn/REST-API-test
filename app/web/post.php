@@ -3,6 +3,7 @@
 namespace src\web;
 
 use \src\models\DB;
+use src\models\User;
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -14,7 +15,7 @@ include_once '../models/User.php';
 require_once '../models/DB.php';
 
 $database = (new DB())->getConnection();
-$user = new \src\models\User($database);
+$user = new User($database);
 
 // get posted data
 $data = (object)$_POST;

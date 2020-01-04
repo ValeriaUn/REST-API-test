@@ -1,4 +1,10 @@
 <?php
+
+namespace src\web;
+
+use \src\models\DB;
+use src\models\User;
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
@@ -7,9 +13,10 @@ header("Access-Control-Allow-Credentials: true");
 header('Content-Type: application/json');
 
 include_once '../models/User.php';
+include_once '../models/DB.php';
 
-$database = (new \src\models\DB())->getConnection();
-$model = new \src\models\User($database);
+$database = (new DB())->getConnection();
+$model = new User($database);
 
 $id = isset($_GET['id']) ? $_GET['id'] : die();
 
